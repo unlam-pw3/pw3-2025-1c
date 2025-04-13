@@ -2,18 +2,49 @@
 
 using Pw3.Clase.Logica;
 
-AdivinadorDeNumeros adivinadorDeNumeros = new AdivinadorDeNumeros(0, 100);
-string pista = "";
-Console.WriteLine("Bienvenido al concurso de numeros, Intente adivinar el num de 0-100!");
+Boolean continuarJuego = true;
 
-while (pista != "Correcto!")
+do
 {
-    Console.WriteLine("Ingrese el numero:");
-    string numeroIngresado = Console.ReadLine();
-    pista = adivinadorDeNumeros.IntentoAdivinar(int.Parse(numeroIngresado));
-    Console.WriteLine(pista);
+    Console.WriteLine("Bienvenido a Magic Ball 8, haga su pregunta de SI o NO y obtendra una respuesta!");
+    String pregunta = Console.ReadLine();
+    
+    Bola8 bola8 = new Bola8();
+    String respuesta = bola8.obtenerRespuesta();
+    Console.WriteLine(respuesta);
+   
+    Console.WriteLine("Desea jugar nuevamente? (S/N)");
+    String respuestaContinuar = Console.ReadLine();
+    if (respuestaContinuar.ToUpper() == "S")
+    {
+        continuarJuego = true;
+    }
+    else
+    {
+        continuarJuego = false;
+    }
+
+
+} while (continuarJuego);
+
+
+
+void AdivinadorDeNumeros()
+{
+    AdivinadorDeNumeros adivinadorDeNumeros = new AdivinadorDeNumeros(0, 100);
+    string pista = "";
+    Console.WriteLine("Bienvenido al concurso de numeros, Intente adivinar el num de 0-100!");
+
+    while (pista != "Correcto!")
+    {
+        Console.WriteLine("Ingrese el numero:");
+        string numeroIngresado = Console.ReadLine();
+        pista = adivinadorDeNumeros.IntentoAdivinar(int.Parse(numeroIngresado));
+        Console.WriteLine(pista);
+    }
+    Console.ReadLine();
 }
-Console.ReadLine();
+
 
 void Sumas()
 {
