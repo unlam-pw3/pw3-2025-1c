@@ -24,7 +24,7 @@ namespace Clase2.Logica
 
         public Equipo AgregarEquipo(EquipoDTO equipoDTO)
         {
-            int id = (_equipos == null || _equipos.Count == 0) ? 1 : _equipos.Count;
+            int id = (_equipos == null || _equipos.Count == 0) ? 1 : (_equipos.Count+1);
             Equipo equipo = new Equipo(id, equipoDTO.nombre);
             _equipos.Add(equipo);
             return equipo;

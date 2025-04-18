@@ -1,6 +1,9 @@
+using Clase2.API.Controllers;
 using Clase2.Entidad;
+using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Clase2
 {
@@ -29,8 +32,8 @@ namespace Clase2
         {
             Resultado resultado = new Resultado();
             resultado.fecha = dtpFechaResultado.Value.ToString("dd/MM/yyyy");
-            resultado.equipoLocal = txtEquipoLocal.Text;
-            resultado.equipoVisitante = txtEquipoVisitante.Text;
+            resultado.equipoLocal = cboEquipoLocal.Text;
+            resultado.equipoVisitante = cboEquipoVisitante.Text;
             resultado.golesLocal = cboGolesLocal.SelectedItem.ToString();
             resultado.golesVisitante = cboGolesVisitante.SelectedItem.ToString();
 
@@ -58,8 +61,8 @@ namespace Clase2
 
         private void LimpiarControles()
         {
-            txtEquipoLocal.Text = "";
-            txtEquipoVisitante.Text = "";
+            cboEquipoLocal.Text = "";
+            cboEquipoVisitante.Text = "";
             cboGolesLocal.SelectedIndex = 0;
             cboGolesVisitante.SelectedIndex = 0;
         }
@@ -71,7 +74,7 @@ namespace Clase2
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:7120/api/");
+                client.BaseAddress = new Uri("http://localhost:5227/api/");
                 var response = await client.PostAsync("resultados", content);
                 if (response.IsSuccessStatusCode)
                 {
@@ -88,7 +91,7 @@ namespace Clase2
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:7120/api/");
+                client.BaseAddress = new Uri("http://localhost:5227/api/");
                 var response = await client.GetAsync("resultados");
                 if (response.IsSuccessStatusCode)
                 {
@@ -108,5 +111,35 @@ namespace Clase2
         }
 
 
+        private void btnAgregarEquipo_Click(object sender, EventArgs e)
+        {
+            EquipoDTO equipoDTO = new EquipoDTO();
+            equipoDTO.nombre = txtNombreEquipo.Text;
+            EnviarEquipoAAPI(equipoDTO);
+        }
+
+        private async Task EnviarEquipoAAPI(EquipoDTO equipoDTO)
+        {
+            var jsonContent = JsonSerializer.Serialize(equipoDTO);
+            var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:5227/api/");
+                var response = await client.PostAsync("equipo", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("Equipo registrado en la API");
+                    txtNombreEquipo.Text = "";
+                    cboEquipoVisitante.Items.Add(equipoDTO.nombre);
+                    cboEquipoLocal.Items.Add(equipoDTO.nombre);
+                }
+                else
+                {
+                    MessageBox.Show("Error al registrar equipo en la API.");
+                }
+
+            }
+        }
     }
 }
