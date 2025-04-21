@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Clase2.API.Controllers;
+﻿using Clase2.Entidad;
 
 namespace Clase2.Logica
 {

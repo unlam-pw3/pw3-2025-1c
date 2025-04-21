@@ -1,9 +1,6 @@
-using Clase2.API.Controllers;
 using Clase2.Entidad;
-using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Clase2
 {
@@ -14,6 +11,7 @@ namespace Clase2
             InitializeComponent();
             CargarComboGoles();
             LimpiarControles();
+            ObtenerResultadosDeAPI();
         }
 
         private void CargarComboGoles()
@@ -41,10 +39,11 @@ namespace Clase2
             LimpiarControles();
         }
 
-        private void btnRefrescarGrilla_Click(object sender, EventArgs e)
+        private async void btnRefrescarGrilla_Click(object sender, EventArgs e)
         {
             dgvResultados.Rows.Clear();
-            ObtenerResultadosDeAPI();
+            await ObtenerResultadosDeAPI();
+            await ObtenerEquiposDeAPI();
         }
 
         private void CargarGrillaResultados(Resultado resultado)
@@ -141,5 +140,41 @@ namespace Clase2
 
             }
         }
+
+        private async Task ObtenerEquiposDeAPI()
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:5227/api/");
+                var response = await client.GetAsync("equipo");
+                if (response.IsSuccessStatusCode)
+                {
+                    var jsonResponse = await response.Content.ReadAsStringAsync();
+                    CargarComboEquipos(JsonSerializer.Deserialize<List<Equipo>>(jsonResponse));
+                }
+                else
+                {
+                    MessageBox.Show("Error al cargar los Equipos");
+                }
+            }
+
+        }
+
+        private void CargarComboEquipos(List<Equipo> equipos)
+        {
+            if(equipos == null || equipos.Count == 0)
+            {
+                MessageBox.Show("No hay equipos disponibles.");
+                return;
+            }
+            cboEquipoLocal.Items.Clear();
+            cboEquipoVisitante.Items.Clear();
+            foreach (var equipo in equipos)
+            {
+                cboEquipoLocal.Items.Add(equipo.nombre);
+                cboEquipoVisitante.Items.Add(equipo.nombre);
+            }
+        }
+
     }
 }

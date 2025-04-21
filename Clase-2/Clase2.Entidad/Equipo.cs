@@ -1,14 +1,14 @@
-﻿namespace Clase2.Logica
+﻿namespace Clase2.Entidad
 {
     public class Equipo
     {
         public Equipo(int id, string nombre)
         {
-            this.Id = id;
-            this.Nombre = nombre;
+            this.id = id;
+            this.nombre = nombre;
         }
 
-        public int Id { get; set; }
-        public string Nombre { get; set; }
+        public int id { get; set; }
+        public string nombre { get; set; }
     }
 }

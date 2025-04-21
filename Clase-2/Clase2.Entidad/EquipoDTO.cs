@@ -1,4 +1,4 @@
-﻿namespace Clase2.API.Controllers
+﻿namespace Clase2.Entidad
 {
     public class EquipoDTO
     {
