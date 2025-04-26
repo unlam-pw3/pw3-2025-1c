@@ -1,10 +1,11 @@
-using Clase3.MVC.Servicio;
+using Clase3.MVC.Servicio.Interfaces;
+using Clase3.MVC.Servicio.Servicios;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<IRegaloServicio, RegaloServicio>();
+builder.Services.AddScoped<IPokemonService, PokemonServicio>();
 
 var app = builder.Build();
 

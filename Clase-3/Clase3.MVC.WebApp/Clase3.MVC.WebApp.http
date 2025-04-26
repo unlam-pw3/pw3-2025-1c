@@ -1,5 +1,0 @@
-﻿@Clase3.MVC.WebApp_HostAddress = https://localhost:7225
-
-GET {{Clase3.MVC.WebApp_HostAddress}}/api/values
-
-###

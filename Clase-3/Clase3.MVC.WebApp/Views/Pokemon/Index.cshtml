@@ -1,0 +1,27 @@
+﻿@model List<Clase3.MVC.Entidades.Pokemon>
+@{
+    <h1>Pokedex</h1>
+    <Table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Imagen</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var pokemon in Model)
+            {
+                <tr>
+                    <td>@pokemon.Id</td>
+                    <td>@pokemon.Nombre</td>
+                    <td>@pokemon.Tipo</td>
+                    <td><img src="@pokemon.Imagen" alt="Imagen de @pokemon.Nombre" style="width: 100px; height: 100px;" /></td>
+                </tr>
+            }
+        </tbody>
+         
+    </Table>
+    <a class=" btn btn-primary nav-link text-light" asp-area="" asp-controller="Pokemon" asp-action="Agregar">Agregar Pokemon</a>
+}
