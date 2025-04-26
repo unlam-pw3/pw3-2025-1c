@@ -1,0 +1,22 @@
+﻿@model Clase3.MVC.Entidades.Pokemon
+
+<form asp-action="Agregar" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Id" class="control-label"></label>
+        <input asp-for="Id" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Nombre" class="control-label"></label>
+        <input asp-for="Nombre" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Tipo" class="control-label"></label>
+        <input asp-for="Tipo" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label class="control-label">Imagen</label>
+        <input type="file" name="imagen" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Agregar</button>
+</form>

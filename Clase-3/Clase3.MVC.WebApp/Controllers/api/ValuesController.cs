@@ -2,7 +2,7 @@
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace Clase3.MVC.WebApp.Controllers.api
+namespace Clase3.MVC.WebApp.Controllers.Api
 {
     [Route("api/[controller]")]
     [ApiController]
