@@ -1,18 +1,15 @@
-﻿namespace Clase2.Entidad
+﻿using System;
+namespace Clase2.Entidad
 {
-    public class Resultado
+    public class Equipo
     {
-        public string fecha { get; set; }
-        public string equipoLocal { get; set; }
-        public string equipoVisitante { get; set; }
-        public string golesLocal { get; set; }
-        public string golesVisitante { get; set; }
-
         private static int contadorId = 0;
+        public string nombre {  get; set; }
+        public string paisOrigen {  get; set; }
 
         public int id { get; set; }
 
-        public Resultado(bool generarId)
+        public Equipo(bool generarId)
         {
             if (generarId)
             {
@@ -21,16 +18,19 @@
             }
         }
 
-        public Resultado() { }
+        public Equipo() { }
 
         public override bool Equals(object obj)
         {
             if (obj == null || GetType() != obj.GetType())
                 return false;
 
-            Resultado other = (Resultado)obj;
+            Equipo other = (Equipo)obj;
             return this.id == other.id;
         }
+
+
+
 
     }
 
