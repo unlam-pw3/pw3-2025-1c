@@ -30,8 +30,8 @@
         {
             dtpFechaResultado = new DateTimePicker();
             grpLocal = new GroupBox();
+            cbEquipoLocal = new ComboBox();
             lblGolesLocal = new Label();
-            txtEquipoLocal = new TextBox();
             cboGolesLocal = new ComboBox();
             lblEquipoLocal = new Label();
             cmdRegistrarResultado = new Button();
@@ -41,14 +41,28 @@
             Resultado = new DataGridViewTextBoxColumn();
             Visitante = new DataGridViewTextBoxColumn();
             grpVisitante = new GroupBox();
+            cbEquipoVisitante = new ComboBox();
             lblGolesVisitante = new Label();
-            txtEquipoVisitante = new TextBox();
             cboGolesVisitante = new ComboBox();
             lblEquipoVisitante = new Label();
             btnRefrescarGrilla = new Button();
+            gbAgregarEquipo = new GroupBox();
+            tbPaisEquipo = new TextBox();
+            label2 = new Label();
+            tbNombreEquipo = new TextBox();
+            label1 = new Label();
+            btnAgregarEquipo = new Button();
+            groupBox1 = new GroupBox();
+            btnRefrescarListaEnEliminarEquipo = new Button();
+            btnEliminarEquipo = new Button();
+            cbEliminarEquipo = new ComboBox();
+            label3 = new Label();
+            btnRefrescarEquipos = new Button();
             grpLocal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvResultados).BeginInit();
             grpVisitante.SuspendLayout();
+            gbAgregarEquipo.SuspendLayout();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // dtpFechaResultado
@@ -60,8 +74,8 @@
             // 
             // grpLocal
             // 
+            grpLocal.Controls.Add(cbEquipoLocal);
             grpLocal.Controls.Add(lblGolesLocal);
-            grpLocal.Controls.Add(txtEquipoLocal);
             grpLocal.Controls.Add(cboGolesLocal);
             grpLocal.Controls.Add(lblEquipoLocal);
             grpLocal.Location = new Point(14, 44);
@@ -71,6 +85,14 @@
             grpLocal.TabStop = false;
             grpLocal.Text = "Local";
             // 
+            // cbEquipoLocal
+            // 
+            cbEquipoLocal.FormattingEnabled = true;
+            cbEquipoLocal.Location = new Point(66, 66);
+            cbEquipoLocal.Name = "cbEquipoLocal";
+            cbEquipoLocal.Size = new Size(167, 23);
+            cbEquipoLocal.TabIndex = 4;
+            // 
             // lblGolesLocal
             // 
             lblGolesLocal.AutoSize = true;
@@ -79,13 +101,6 @@
             lblGolesLocal.Size = new Size(36, 15);
             lblGolesLocal.TabIndex = 3;
             lblGolesLocal.Text = "Goles";
-            // 
-            // txtEquipoLocal
-            // 
-            txtEquipoLocal.Location = new Point(66, 65);
-            txtEquipoLocal.Name = "txtEquipoLocal";
-            txtEquipoLocal.Size = new Size(167, 23);
-            txtEquipoLocal.TabIndex = 2;
             // 
             // cboGolesLocal
             // 
@@ -107,9 +122,9 @@
             // 
             // cmdRegistrarResultado
             // 
-            cmdRegistrarResultado.Location = new Point(12, 221);
+            cmdRegistrarResultado.Location = new Point(144, 221);
             cmdRegistrarResultado.Name = "cmdRegistrarResultado";
-            cmdRegistrarResultado.Size = new Size(252, 50);
+            cmdRegistrarResultado.Size = new Size(184, 50);
             cmdRegistrarResultado.TabIndex = 2;
             cmdRegistrarResultado.Text = "Registrar Resultado";
             cmdRegistrarResultado.UseVisualStyleBackColor = true;
@@ -150,8 +165,8 @@
             // 
             // grpVisitante
             // 
+            grpVisitante.Controls.Add(cbEquipoVisitante);
             grpVisitante.Controls.Add(lblGolesVisitante);
-            grpVisitante.Controls.Add(txtEquipoVisitante);
             grpVisitante.Controls.Add(cboGolesVisitante);
             grpVisitante.Controls.Add(lblEquipoVisitante);
             grpVisitante.Location = new Point(286, 44);
@@ -161,6 +176,14 @@
             grpVisitante.TabStop = false;
             grpVisitante.Text = "Visitante";
             // 
+            // cbEquipoVisitante
+            // 
+            cbEquipoVisitante.FormattingEnabled = true;
+            cbEquipoVisitante.Location = new Point(66, 67);
+            cbEquipoVisitante.Name = "cbEquipoVisitante";
+            cbEquipoVisitante.Size = new Size(167, 23);
+            cbEquipoVisitante.TabIndex = 4;
+            // 
             // lblGolesVisitante
             // 
             lblGolesVisitante.AutoSize = true;
@@ -169,13 +192,6 @@
             lblGolesVisitante.Size = new Size(36, 15);
             lblGolesVisitante.TabIndex = 3;
             lblGolesVisitante.Text = "Goles";
-            // 
-            // txtEquipoVisitante
-            // 
-            txtEquipoVisitante.Location = new Point(66, 65);
-            txtEquipoVisitante.Name = "txtEquipoVisitante";
-            txtEquipoVisitante.Size = new Size(167, 23);
-            txtEquipoVisitante.TabIndex = 2;
             // 
             // cboGolesVisitante
             // 
@@ -197,19 +213,138 @@
             // 
             // btnRefrescarGrilla
             // 
-            btnRefrescarGrilla.Location = new Point(286, 221);
+            btnRefrescarGrilla.Location = new Point(336, 221);
             btnRefrescarGrilla.Name = "btnRefrescarGrilla";
-            btnRefrescarGrilla.Size = new Size(250, 50);
+            btnRefrescarGrilla.Size = new Size(200, 50);
             btnRefrescarGrilla.TabIndex = 5;
             btnRefrescarGrilla.Text = "Refrescar Grilla";
             btnRefrescarGrilla.UseVisualStyleBackColor = true;
             btnRefrescarGrilla.Click += btnRefrescarGrilla_Click;
             // 
+            // gbAgregarEquipo
+            // 
+            gbAgregarEquipo.Controls.Add(tbPaisEquipo);
+            gbAgregarEquipo.Controls.Add(label2);
+            gbAgregarEquipo.Controls.Add(tbNombreEquipo);
+            gbAgregarEquipo.Controls.Add(label1);
+            gbAgregarEquipo.Controls.Add(btnAgregarEquipo);
+            gbAgregarEquipo.Location = new Point(542, 44);
+            gbAgregarEquipo.Name = "gbAgregarEquipo";
+            gbAgregarEquipo.Size = new Size(246, 196);
+            gbAgregarEquipo.TabIndex = 6;
+            gbAgregarEquipo.TabStop = false;
+            gbAgregarEquipo.Text = "Agregar Equipo";
+            // 
+            // tbPaisEquipo
+            // 
+            tbPaisEquipo.Location = new Point(13, 124);
+            tbPaisEquipo.Name = "tbPaisEquipo";
+            tbPaisEquipo.Size = new Size(227, 23);
+            tbPaisEquipo.TabIndex = 4;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(13, 101);
+            label2.Name = "label2";
+            label2.Size = new Size(87, 15);
+            label2.TabIndex = 3;
+            label2.Text = "Pais del Equipo";
+            // 
+            // tbNombreEquipo
+            // 
+            tbNombreEquipo.Location = new Point(13, 67);
+            tbNombreEquipo.Name = "tbNombreEquipo";
+            tbNombreEquipo.Size = new Size(227, 23);
+            tbNombreEquipo.TabIndex = 2;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(13, 44);
+            label1.Name = "label1";
+            label1.Size = new Size(94, 15);
+            label1.TabIndex = 1;
+            label1.Text = "Nombre Equipo:";
+            // 
+            // btnAgregarEquipo
+            // 
+            btnAgregarEquipo.Location = new Point(13, 156);
+            btnAgregarEquipo.Name = "btnAgregarEquipo";
+            btnAgregarEquipo.Size = new Size(227, 23);
+            btnAgregarEquipo.TabIndex = 0;
+            btnAgregarEquipo.Text = "Agregar Equipo";
+            btnAgregarEquipo.UseVisualStyleBackColor = true;
+            btnAgregarEquipo.Click += btnAgregarEquipo_Click;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(btnRefrescarListaEnEliminarEquipo);
+            groupBox1.Controls.Add(btnEliminarEquipo);
+            groupBox1.Controls.Add(cbEliminarEquipo);
+            groupBox1.Controls.Add(label3);
+            groupBox1.Location = new Point(794, 44);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(246, 196);
+            groupBox1.TabIndex = 7;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Eliminar Equipo";
+            // 
+            // btnRefrescarListaEnEliminarEquipo
+            // 
+            btnRefrescarListaEnEliminarEquipo.Location = new Point(122, 22);
+            btnRefrescarListaEnEliminarEquipo.Name = "btnRefrescarListaEnEliminarEquipo";
+            btnRefrescarListaEnEliminarEquipo.Size = new Size(118, 23);
+            btnRefrescarListaEnEliminarEquipo.TabIndex = 3;
+            btnRefrescarListaEnEliminarEquipo.Text = "Refrescar Lista";
+            btnRefrescarListaEnEliminarEquipo.UseVisualStyleBackColor = true;
+            btnRefrescarListaEnEliminarEquipo.Click += btnRefrescarListaEnEliminarEquipo_Click;
+            // 
+            // btnEliminarEquipo
+            // 
+            btnEliminarEquipo.Location = new Point(6, 105);
+            btnEliminarEquipo.Name = "btnEliminarEquipo";
+            btnEliminarEquipo.Size = new Size(234, 23);
+            btnEliminarEquipo.TabIndex = 2;
+            btnEliminarEquipo.Text = "Eliminar Equipo";
+            btnEliminarEquipo.UseVisualStyleBackColor = true;
+            btnEliminarEquipo.Click += btnEliminarEquipo_Click;
+            // 
+            // cbEliminarEquipo
+            // 
+            cbEliminarEquipo.FormattingEnabled = true;
+            cbEliminarEquipo.Location = new Point(6, 67);
+            cbEliminarEquipo.Name = "cbEliminarEquipo";
+            cbEliminarEquipo.Size = new Size(234, 23);
+            cbEliminarEquipo.TabIndex = 1;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(6, 44);
+            label3.Name = "label3";
+            label3.Size = new Size(44, 15);
+            label3.TabIndex = 0;
+            label3.Text = "Equipo";
+            // 
+            // btnRefrescarEquipos
+            // 
+            btnRefrescarEquipos.Location = new Point(14, 221);
+            btnRefrescarEquipos.Name = "btnRefrescarEquipos";
+            btnRefrescarEquipos.Size = new Size(124, 50);
+            btnRefrescarEquipos.TabIndex = 8;
+            btnRefrescarEquipos.Text = "Refrescar Equipos";
+            btnRefrescarEquipos.UseVisualStyleBackColor = true;
+            btnRefrescarEquipos.Click += btnRefrescarEquipos_Click;
+            // 
             // frmResultados
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(564, 486);
+            ClientSize = new Size(1052, 482);
+            Controls.Add(btnRefrescarEquipos);
+            Controls.Add(groupBox1);
+            Controls.Add(gbAgregarEquipo);
             Controls.Add(btnRefrescarGrilla);
             Controls.Add(grpVisitante);
             Controls.Add(dgvResultados);
@@ -223,6 +358,10 @@
             ((System.ComponentModel.ISupportInitialize)dgvResultados).EndInit();
             grpVisitante.ResumeLayout(false);
             grpVisitante.PerformLayout();
+            gbAgregarEquipo.ResumeLayout(false);
+            gbAgregarEquipo.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -230,7 +369,6 @@
 
         private DateTimePicker dtpFechaResultado;
         private GroupBox grpLocal;
-        private TextBox txtEquipoLocal;
         private ComboBox cboGolesLocal;
         private Label lblEquipoLocal;
         private Button cmdRegistrarResultado;
@@ -246,5 +384,19 @@
         private DataGridViewTextBoxColumn Resultado;
         private DataGridViewTextBoxColumn Visitante;
         private Button btnRefrescarGrilla;
+        private ComboBox cbEquipoLocal;
+        private ComboBox cbEquipoVisitante;
+        private GroupBox gbAgregarEquipo;
+        private Button btnAgregarEquipo;
+        private TextBox tbPaisEquipo;
+        private Label label2;
+        private TextBox tbNombreEquipo;
+        private Label label1;
+        private GroupBox groupBox1;
+        private Label label3;
+        private ComboBox cbEliminarEquipo;
+        private Button btnEliminarEquipo;
+        private Button btnRefrescarListaEnEliminarEquipo;
+        private Button btnRefrescarEquipos;
     }
 }
