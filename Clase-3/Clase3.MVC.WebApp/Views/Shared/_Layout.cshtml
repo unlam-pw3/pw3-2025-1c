@@ -26,9 +26,6 @@
                             <a class="nav-link btn-custom" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link btn-custom" asp-area="" asp-controller="Vehiculos" asp-action="Editar">Editar vehiculo</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link btn-custom" asp-area="" asp-controller="Vehiculos" asp-action="Agregar">Agregar Vehiculo</a>
                         </li>
                     </ul>
@@ -52,8 +49,8 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/agregar.js" asp-append-version="true"></script>
-    <script src="~/js/buscador.js" asp-append-version="true"></script>
-   
+    <script src="~/js/editar.js" asp-append-version="true"></script>
+ 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

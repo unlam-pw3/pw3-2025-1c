@@ -37,7 +37,7 @@ namespace Clase3.MVC.WebApp.Controllers.api
         public IActionResult ObtenerVehiculos()
         {
 
-            Console.WriteLine(this.iVehiculosServicio.ObtenerVehiculos().Count());
+           
 
             return Ok(this.iVehiculosServicio.ObtenerVehiculos());
 
@@ -69,6 +69,21 @@ namespace Clase3.MVC.WebApp.Controllers.api
 
             return Ok(this.iVehiculosServicio.BuscarVehiculo(Buscar));
 
+        }
+
+        [HttpPost("Editar")]
+
+        public IActionResult Editar([FromBody] Vehiculo vehiculo)
+        {
+
+            if(vehiculo == null)
+            {
+                return BadRequest("El vehiculo es null");
+            }
+
+            this.iVehiculosServicio.editarVehiculo(vehiculo);
+
+            return Ok();
         }
     }
 }

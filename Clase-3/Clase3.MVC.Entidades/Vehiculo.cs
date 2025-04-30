@@ -15,9 +15,11 @@ namespace Clase3.MVC.Entidades
 
         public int Kilometros { get; set; }
 
+     //   public string FotoUrl {  get; set; } 
+
         private static int IdCont = 0;
 
-        public int Id { get; private set; }
+        public int Id { get; set; }
 
 
         public Vehiculo()

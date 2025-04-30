@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\imagenes\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="8.1.1" />
   </ItemGroup>
 

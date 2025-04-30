@@ -1,5 +1,39 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Clase3.MVC.Entidades.Vehiculo
 @{
 }
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4 class="mb-0">Modificar datos</h4>
+                </div>
+                <div class="card-body">
+                    <input type="hidden" asp-for="Id" /> 
+                    <div class="mb-3">
+                        <label for="marca" class="form-label">Marca</label>
+                        <input id="marca" class="form-control" value="@Model.Marca" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="modelo" class="form-label">Modelo</label>
+                        <input id="modelo" class="form-control" value="@Model.Modelo" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="precio" class="form-label">Precio</label>
+                        <input id="precio" class="form-control" value="@Model.Precio" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="km" class="form-label">Kilometros recorridos</label>
+                        <input id="km" class="form-control" value="@Model.Kilometros" />
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success px-4" id="modificar">Modificar</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

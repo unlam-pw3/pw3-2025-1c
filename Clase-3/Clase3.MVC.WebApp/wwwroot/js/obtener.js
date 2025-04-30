@@ -39,13 +39,17 @@ function buscador(event) {
 
 
             vehiculos.forEach(auto => {
+             
                 const fila = document.createElement("tr");
 
                 fila.innerHTML = `
                     <td>${auto.marca}</td>
                     <td>${auto.modelo}</td>
-                    <td>${auto.precio}</td>
+                    <td>$${auto.precio}</td>
+                  
                     <td>${auto.kilometros}</td>
+                    <td><img src="${auto.fotoUrl}" alt="Foto del auto" style="width:100px; height:auto;" /></td>
+                 
                     <td>
                         <a class="btn btn-edit" href="/Vehiculos/Editar?id=${auto.id}">Editar</a>
                         <button class="btn btn-delete eliminar" data-id="${auto.id}">Eliminar</button>
@@ -82,8 +86,9 @@ function obtenerDatos() {
                 fila.innerHTML = `
                     <td>${auto.marca}</td>
                     <td>${auto.modelo}</td>
-                    <td>${auto.precio}</td>
+                    <td>$${auto.precio}</td>
                     <td>${auto.kilometros}</td>
+                     <td><img src="${auto.fotoUrl}" alt="Foto del auto" style="width:100px; height:auto;" /></td>
                     <td>
                         <a class="btn btn-edit" href="/Vehiculos/Editar?id=${auto.id}">Editar</a>
                         <button class="btn btn-delete eliminar" data-id="${auto.id}">Eliminar</button>
