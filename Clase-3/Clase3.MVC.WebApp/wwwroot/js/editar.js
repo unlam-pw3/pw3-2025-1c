@@ -15,8 +15,17 @@ function editar() {
     let modelo = document.getElementById("modelo").value;
     let precio = document.getElementById("precio").value;
     let km = document.getElementById("km").value;
+    let foto = document.getElementById("foto").files[0];
     let id = document.getElementById("Id").value;
 
+    const formData = new FormData();
+
+    formData.append("Marca", marca);
+    formData.append("Modelo", modelo);
+    formData.append("Precio", precio);
+    formData.append("Kilometros", km);
+    formData.append("FotoUrl", foto);
+    formData.append("Id", id);
 
     const vehiculo = {
         Marca: marca,
@@ -30,10 +39,8 @@ function editar() {
     fetch("/api/Concesionaria/Editar", {
 
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(vehiculo),
+      
+        body: formData,
     }).then(response => {
 
         if (!response.ok) {

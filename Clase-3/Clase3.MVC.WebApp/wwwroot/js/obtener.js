@@ -22,8 +22,6 @@ function buscador(event) {
         return
     }
 
-
-
     fetch(`/api/Concesionaria/Buscar?buscar=${texto}`, {
 
         method: 'GET'
@@ -48,7 +46,7 @@ function buscador(event) {
                     <td>$${auto.precio}</td>
                   
                     <td>${auto.kilometros}</td>
-                    <td><img src="${auto.fotoUrl}" alt="Foto del auto" style="width:100px; height:auto;" /></td>
+                    <td><img src="${auto.url}" alt="Foto del auto" style="width:100px; height:auto;" /></td>
                  
                     <td>
                         <a class="btn btn-edit" href="/Vehiculos/Editar?id=${auto.id}">Editar</a>
@@ -88,7 +86,7 @@ function obtenerDatos() {
                     <td>${auto.modelo}</td>
                     <td>$${auto.precio}</td>
                     <td>${auto.kilometros}</td>
-                     <td><img src="${auto.fotoUrl}" alt="Foto del auto" style="width:100px; height:auto;" /></td>
+                     <td><img src="${auto.url}" alt="Foto del auto" style="width:100px; height:auto;" /></td>
                     <td>
                         <a class="btn btn-edit" href="/Vehiculos/Editar?id=${auto.id}">Editar</a>
                         <button class="btn btn-delete eliminar" data-id="${auto.id}">Eliminar</button>

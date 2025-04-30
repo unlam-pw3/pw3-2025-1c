@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace Clase3.MVC.Entidades
 {
@@ -15,7 +16,7 @@ namespace Clase3.MVC.Entidades
 
         public int Kilometros { get; set; }
 
-     //   public string FotoUrl {  get; set; } 
+        public string? Url {  get; set; } 
 
         private static int IdCont = 0;
 

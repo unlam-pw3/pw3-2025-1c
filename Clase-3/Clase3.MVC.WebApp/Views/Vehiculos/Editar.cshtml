@@ -10,7 +10,8 @@
                     <h4 class="mb-0">Modificar datos</h4>
                 </div>
                 <div class="card-body">
-                    <input type="hidden" asp-for="Id" /> 
+                    <input type="hidden" asp-for="Id" />
+                   
                     <div class="mb-3">
                         <label for="marca" class="form-label">Marca</label>
                         <input id="marca" class="form-control" value="@Model.Marca" />
@@ -26,6 +27,10 @@
                     <div class="mb-3">
                         <label for="km" class="form-label">Kilometros recorridos</label>
                         <input id="km" class="form-control" value="@Model.Kilometros" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="foto" class="form-label">Imagen</label>
+                        <input type="file" id="foto" />
                     </div>
                     <div class="text-center">
                         <button type="submit" class="btn btn-success px-4" id="modificar">Modificar</button>
