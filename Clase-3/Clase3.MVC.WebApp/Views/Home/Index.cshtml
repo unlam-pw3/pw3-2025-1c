@@ -1,8 +1,33 @@
 ﻿@{
     ViewData["Title"] = "Pagina Principal";
 }
+<div class="d-flex justify-content-center align-items-center flex-column mt-5">
+    <h6 class="display-4 mb-2">Buscar vehiculo</h6>
+    <form class="d-flex w-50">
+        <input class="form-control me-2" id="buscador" type="search" placeholder="Buscar..." aria-label="Buscar" name="query">
+        <button class="btn btn-primary" type="submit">Buscar</button>
+    </form>
 
-<div class="text-center">
-    <h1 class="display-4">Bienvenido</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Precio</th>
+                <th>Kilometros</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="tabla">
+       
+        </tbody>
+    </table>
+
+
+
+
+
+
 </div>
+
+<script src="~/js/obtener.js" asp-append-version="true"></script>

@@ -5,30 +5,31 @@ namespace Clase3.MVC.WebApp.Controllers
 {
     public class RegalosController : Controller
     {
-        private IRegaloServicio _regaloServicio;
+        /* private IRegaloServicio _regaloServicio;
 
-        public RegalosController(IRegaloServicio regaloServicio)
-        {
-            _regaloServicio = regaloServicio;
-        }
+         public RegalosController(IRegaloServicio regaloServicio)
+         {
+             _regaloServicio = regaloServicio;
+         }
 
-        public IActionResult Index()
-        {
-            return View(_regaloServicio.ObtenerRegalos());
-        }
+         public IActionResult Index()
+         {
+             return View(_regaloServicio.ObtenerRegalos());
+         }
 
-        [HttpGet]
-        public IActionResult Agregar()
-        {
-            return View();
-        }
-        [HttpPost]
-        public IActionResult Agregar(string descripcion, decimal precio)
-        {
+         [HttpGet]
+         public IActionResult Agregar()
+         {
+             return View();
+         }
+         [HttpPost]
+         public IActionResult Agregar(string descripcion, decimal precio)
+         {
 
-            _regaloServicio.AgregarRegalo(new Entidades.Regalo { Descripcion = descripcion, Precio = precio });
-            return RedirectToAction("Index");
+             _regaloServicio.AgregarRegalo(new Entidades.Regalo { Descripcion = descripcion, Precio = precio });
+             return RedirectToAction("Index");
 
-        }
+         }
+      */
     }
 }

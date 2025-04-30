@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="8.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Clase3.MVC.Entidades\Clase3.MVC.Entidades.csproj" />
     <ProjectReference Include="..\Clase3.MVC.Servicio\Clase3.MVC.Servicio.csproj" />
   </ItemGroup>
