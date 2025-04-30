@@ -1,0 +1,21 @@
+@model Clase3.MVC.Entidades.Automovil
+@{
+}
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Marca" class="control-label"></label>
+        <input asp-for="Marca" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Modelo" class="control-label"></label>
+        <input asp-for="Modelo" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Color" class="control-label"></label>
+        <input asp-for="Color" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+
+</form>

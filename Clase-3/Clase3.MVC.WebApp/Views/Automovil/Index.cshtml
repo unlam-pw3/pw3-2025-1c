@@ -1,0 +1,28 @@
+@model List<Clase3.MVC.Entidades.Automovil>
+    @{
+    }
+
+    <h1>Automóviles</h1>
+
+
+    <Table class="table">
+        <thead>
+            <tr>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Color</th>
+                <th>Foto</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var automovil in Model)
+        {
+            <tr>
+                <td>@automovil.Marca</td>
+                <td>@automovil.Modelo</td>
+                <td>@automovil.Color</td>
+                <td><img src="@automovil.Foto" alt="Imagen de @automovil.Marca @automovil.Modelo" style="width: 100px; height: auto;" /></td>
+            </tr>
+        }
+        </tbody>
+    </Table>
