@@ -1,0 +1,33 @@
+﻿@using Clase4.POO.Entidades
+@model List<IEquipoDeportivo>
+
+@{
+    ViewData["Title"] = "Listado de Equipos";
+}
+
+<h1>@ViewData["Title"]</h1>
+@* 
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Jugadores</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var equipo in Model)
+        {
+            <tr>
+                <td>@equipo.Nombre</td>
+                <td>@equipo.CantidadDeIntegrantesRequeridos()</td>
+            </tr>
+        }
+    </tbody>
+</table> *@
+<a href="/Equipos/AgregarEquipoFutbol" class="btn btn-primary">Agregar Equipo Futbol</a>
+<div class="row">
+    @foreach (var equipo in Model)
+    {
+        @Html.Partial("_pvEquipo", equipo)
+    }
+</div>
