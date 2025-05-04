@@ -1,0 +1,29 @@
+﻿@model Clase4.POO.Entidades.AbstractAnimal
+
+@{
+    ViewData["Title"] = "Agregar Animal";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form action="/Animal/AgregarAnimal" method="post">
+    <div class="form-group">
+        <label asp-for="Nombre" class="control-label">Nombre del Animal</label>
+        <input asp-for="Nombre" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Tipo de Animal</label>
+
+        <select name="tipoAnimal" class="form-control">
+            <option value="Gato">Gato</option>
+            <option value="Leon">Leon</option>
+            <option value="Perro">Perro</option>
+            <option value="Gallina">Gallina</option>
+            <option value="Vaca">Vaca</option>
+
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Agregar</button>
+</form>
