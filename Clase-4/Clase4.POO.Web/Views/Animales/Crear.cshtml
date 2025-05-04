@@ -1,0 +1,25 @@
+﻿@* vista para crear animal*@
+@model Clase4.POO.Entidades.AnimalesEntidades.Animal
+@{
+	ViewData["Title"] = "Crear Animal";
+}
+
+<h1>Crear Animal</h1>
+<form asp-action="Crear" method="post">
+	<div class="form-group">
+		<label asp-for="Nombre"></label>
+		<input asp-for="Nombre" class="form-control" />
+	</div>
+	<div class="form-group">
+		<label asp-for="Tipo"></label>
+		<select asp-for="Tipo" class="form-control">
+			<option value="">Seleccione un tipo</option>
+			<option value="Gallina">Gallina</option>
+			<option value="Gato">Gato</option>
+			<option value="Leon">Leon</option>
+			<option value="Perro">Perro</option>
+			<option value="Vaca">Vaca</option>
+		</select>
+	</div>
+	<button type="submit" class="btn btn-primary">Crear</button>
+</form>

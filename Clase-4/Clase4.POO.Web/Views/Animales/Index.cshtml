@@ -1,0 +1,32 @@
+﻿@using Clase4.POO.Entidades.AnimalesEntidades
+@model List<Animal>
+
+	@{
+	ViewData["Title"] = "Lista de Animales";
+}
+
+<h1>Lista de Animales</h1><a asp-controller="Animales" asp-action="Crear" class="btn btn-danger">Agregar</a>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Nombre</th>
+			<th>Tipo</th>
+			<th>Acciones</th>
+			<th>¿Cómo hace?</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var animal in Model)
+		{
+			<tr>
+				<td>@animal.Nombre</td>
+				<td>@animal.Tipo</td>
+				<td>@animal.HacerSonido()</td>
+ 				<td>
+					<a asp-action="Eliminar" asp-controller="Animales" asp-route-nombre="@animal.Nombre" asp-route-tipo="@animal.Tipo" class="btn btn-danger">Eliminar</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
