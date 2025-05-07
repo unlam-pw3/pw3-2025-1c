@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<IEquiposLogica, EquiposLogica>();
+builder.Services.AddSingleton<IAnimalServicio,AnimalServicio>();
 
 var app = builder.Build();
 
