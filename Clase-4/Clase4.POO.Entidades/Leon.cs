@@ -8,7 +8,7 @@ namespace Clase4.POO.Entidades
 {
     public class Leon : Animal
     {
-
+        //
         public Leon(string nombre, int edad) : base(nombre, edad)
         {
         }
