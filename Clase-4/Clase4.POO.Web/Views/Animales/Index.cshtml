@@ -1,0 +1,16 @@
+﻿@using Clase4.POO.Entidades
+@model List<Animal>
+
+<h1>
+	Animales
+</h1>
+
+<ul>
+
+    @foreach (var animal in Model)
+    {
+        <li>
+            @animal.Tipo dice @animal.HacerSonido()
+        </li>
+    }
+</ul>

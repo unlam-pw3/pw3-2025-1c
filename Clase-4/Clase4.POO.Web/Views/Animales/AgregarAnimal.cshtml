@@ -1,0 +1,13 @@
+﻿@model Clase4.POO.Web.Models.AnimalViewModel
+
+<h1>Agregar animal</h1>
+
+<form action="/Animales/AgregarAnimal" method="post">
+
+    <div class="form-group">
+        <label asp-for="Tipo" class="control-label"></label>
+        <select asp-for="Tipo" asp-items="Model.Tipos" class="form-control">
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Agregar</button>
+</form>
