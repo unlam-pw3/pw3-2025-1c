@@ -1,7 +1,10 @@
+using Parcial1.Superheroes.Logica;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IMisionesLogica, MisionesLogica>();
 
 var app = builder.Build();
 

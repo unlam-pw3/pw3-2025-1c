@@ -1,0 +1,35 @@
+﻿@using Parcial1.Superheroes.Entidades
+@model Mision
+
+@{
+    ViewData["Title"] = "Registrar Misión";
+}
+
+<h2>Registrar Misión</h2>
+
+<form action="/Misiones/Registrar" method="post">
+    <div class="form-group">
+        @Html.LabelFor(model => model.NombreSuperheroe)
+        @Html.TextBoxFor(model => model.NombreSuperheroe, new { @class = "form-control", type = "text" })
+        @Html.ValidationMessageFor(model => model.NombreSuperheroe, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CantidadVillanosDerrotados)
+        @Html.TextBoxFor(model => model.CantidadVillanosDerrotados, new { @class = "form-control", type = "number" })
+        @Html.ValidationMessageFor(model => model.CantidadVillanosDerrotados, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.HorasMision)
+        @Html.TextBoxFor(model => model.HorasMision, new { @class = "form-control", type = "number" })
+        @Html.ValidationMessageFor(model => model.HorasMision, "", new { @class = "text-danger" })
+    </div>
+
+<input type="submit" value="Registrar" />    
+</form>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
