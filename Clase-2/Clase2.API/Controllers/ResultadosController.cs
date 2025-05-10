@@ -36,5 +36,62 @@ namespace Clase2.API.Controllers
             return CreatedAtAction(nameof(GetResultados), new { id = resultado.fecha }, resultado);
         }
 
+        [HttpPost("eliminar")]
+        public IActionResult DeleteResultados([FromBody] List<Resultado> filas)
+        {
+
+            if (filas == null)
+            {
+
+                return BadRequest("El resultado nulo.");
+            }
+
+            resultadoServicio.EliminarResultados(filas);
+
+            return Ok();
+        }
+
+        [HttpPost("nuevo-equipo")]
+        public IActionResult NuevoEquipo([FromBody] Equipo equipo) { 
+            
+            if(equipo == null)
+            {
+                return BadRequest("El Equipo no puede ser nulo.");
+            }
+
+            resultadoServicio.AgregarEquipo(equipo);
+
+            return Ok();
+        
+        }
+
+        [HttpGet("equipos")]
+
+        public IActionResult EquiposLista()
+        {
+
+            var resultados = resultadoServicio.ObtenerEquipos();
+            if (resultados == null || !resultados.Any())
+            {
+                return NotFound("No hay resultados disponibles.");
+            }
+            return Ok(resultados);
+
+        }
+
+        [HttpPost("eliminar-equipo")]
+
+        public IActionResult EquiposAEliminar([FromBody] List<Equipo> equipos) {
+
+            if(equipos.Count == 0)
+            {
+                return NotFound("Vacio");
+            }
+
+            resultadoServicio.EliminarEquipo(equipos);
+
+            return Ok();
+        }
+
     }
 }
