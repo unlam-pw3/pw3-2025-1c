@@ -1,0 +1,15 @@
+﻿@model List<Clase3.Entidades.Automovil>
+
+<h2>Listado de Automóviles</h2>
+<a href="/Automovil/Crear">Agregar Nuevo</a>
+<table>
+    <tr><th>Marca</th><th>Modelo</th><th>Foto</th></tr>
+    @foreach (var auto in Model)
+    {
+        <tr>
+            <td>@auto.Marca</td>
+            <td>@auto.Modelo</td>
+            <td><img src="@auto.Foto" alt="Foto" width="100" /></td>
+        </tr>
+    }
+</table>
