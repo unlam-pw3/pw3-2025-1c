@@ -30,8 +30,8 @@
         {
             dtpFechaResultado = new DateTimePicker();
             grpLocal = new GroupBox();
+            cboEquipoLocal = new ComboBox();
             lblGolesLocal = new Label();
-            txtEquipoLocal = new TextBox();
             cboGolesLocal = new ComboBox();
             lblEquipoLocal = new Label();
             cmdRegistrarResultado = new Button();
@@ -41,11 +41,12 @@
             Resultado = new DataGridViewTextBoxColumn();
             Visitante = new DataGridViewTextBoxColumn();
             grpVisitante = new GroupBox();
+            cboEquipoVisitante = new ComboBox();
             lblGolesVisitante = new Label();
-            txtEquipoVisitante = new TextBox();
             cboGolesVisitante = new ComboBox();
             lblEquipoVisitante = new Label();
             btnRefrescarGrilla = new Button();
+            lblLinkCrearEquipo = new LinkLabel();
             grpLocal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvResultados).BeginInit();
             grpVisitante.SuspendLayout();
@@ -60,8 +61,8 @@
             // 
             // grpLocal
             // 
+            grpLocal.Controls.Add(cboEquipoLocal);
             grpLocal.Controls.Add(lblGolesLocal);
-            grpLocal.Controls.Add(txtEquipoLocal);
             grpLocal.Controls.Add(cboGolesLocal);
             grpLocal.Controls.Add(lblEquipoLocal);
             grpLocal.Location = new Point(14, 44);
@@ -71,6 +72,14 @@
             grpLocal.TabStop = false;
             grpLocal.Text = "Local";
             // 
+            // cboEquipoLocal
+            // 
+            cboEquipoLocal.FormattingEnabled = true;
+            cboEquipoLocal.Location = new Point(66, 65);
+            cboEquipoLocal.Name = "cboEquipoLocal";
+            cboEquipoLocal.Size = new Size(167, 23);
+            cboEquipoLocal.TabIndex = 4;
+            // 
             // lblGolesLocal
             // 
             lblGolesLocal.AutoSize = true;
@@ -79,13 +88,6 @@
             lblGolesLocal.Size = new Size(36, 15);
             lblGolesLocal.TabIndex = 3;
             lblGolesLocal.Text = "Goles";
-            // 
-            // txtEquipoLocal
-            // 
-            txtEquipoLocal.Location = new Point(66, 65);
-            txtEquipoLocal.Name = "txtEquipoLocal";
-            txtEquipoLocal.Size = new Size(167, 23);
-            txtEquipoLocal.TabIndex = 2;
             // 
             // cboGolesLocal
             // 
@@ -150,8 +152,8 @@
             // 
             // grpVisitante
             // 
+            grpVisitante.Controls.Add(cboEquipoVisitante);
             grpVisitante.Controls.Add(lblGolesVisitante);
-            grpVisitante.Controls.Add(txtEquipoVisitante);
             grpVisitante.Controls.Add(cboGolesVisitante);
             grpVisitante.Controls.Add(lblEquipoVisitante);
             grpVisitante.Location = new Point(286, 44);
@@ -161,6 +163,14 @@
             grpVisitante.TabStop = false;
             grpVisitante.Text = "Visitante";
             // 
+            // cboEquipoVisitante
+            // 
+            cboEquipoVisitante.FormattingEnabled = true;
+            cboEquipoVisitante.Location = new Point(66, 65);
+            cboEquipoVisitante.Name = "cboEquipoVisitante";
+            cboEquipoVisitante.Size = new Size(167, 23);
+            cboEquipoVisitante.TabIndex = 5;
+            // 
             // lblGolesVisitante
             // 
             lblGolesVisitante.AutoSize = true;
@@ -169,13 +179,6 @@
             lblGolesVisitante.Size = new Size(36, 15);
             lblGolesVisitante.TabIndex = 3;
             lblGolesVisitante.Text = "Goles";
-            // 
-            // txtEquipoVisitante
-            // 
-            txtEquipoVisitante.Location = new Point(66, 65);
-            txtEquipoVisitante.Name = "txtEquipoVisitante";
-            txtEquipoVisitante.Size = new Size(167, 23);
-            txtEquipoVisitante.TabIndex = 2;
             // 
             // cboGolesVisitante
             // 
@@ -205,11 +208,23 @@
             btnRefrescarGrilla.UseVisualStyleBackColor = true;
             btnRefrescarGrilla.Click += btnRefrescarGrilla_Click;
             // 
+            // lblLinkCrearEquipo
+            // 
+            lblLinkCrearEquipo.AutoSize = true;
+            lblLinkCrearEquipo.Location = new Point(422, 501);
+            lblLinkCrearEquipo.Name = "lblLinkCrearEquipo";
+            lblLinkCrearEquipo.Size = new Size(114, 15);
+            lblLinkCrearEquipo.TabIndex = 6;
+            lblLinkCrearEquipo.TabStop = true;
+            lblLinkCrearEquipo.Text = "Administrar Equipos";
+            lblLinkCrearEquipo.LinkClicked += lblLinkCrearEquipo_LinkClicked;
+            // 
             // frmResultados
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(564, 486);
+            ClientSize = new Size(559, 525);
+            Controls.Add(lblLinkCrearEquipo);
             Controls.Add(btnRefrescarGrilla);
             Controls.Add(grpVisitante);
             Controls.Add(dgvResultados);
@@ -224,13 +239,13 @@
             grpVisitante.ResumeLayout(false);
             grpVisitante.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private DateTimePicker dtpFechaResultado;
         private GroupBox grpLocal;
-        private TextBox txtEquipoLocal;
         private ComboBox cboGolesLocal;
         private Label lblEquipoLocal;
         private Button cmdRegistrarResultado;
@@ -238,7 +253,6 @@
         private DataGridView dgvResultados;
         private GroupBox grpVisitante;
         private Label lblGolesVisitante;
-        private TextBox txtEquipoVisitante;
         private ComboBox cboGolesVisitante;
         private Label lblEquipoVisitante;
         private DataGridViewTextBoxColumn Fecha;
@@ -246,5 +260,8 @@
         private DataGridViewTextBoxColumn Resultado;
         private DataGridViewTextBoxColumn Visitante;
         private Button btnRefrescarGrilla;
+        private ComboBox cboEquipoLocal;
+        private ComboBox cboEquipoVisitante;
+        private LinkLabel lblLinkCrearEquipo;
     }
 }

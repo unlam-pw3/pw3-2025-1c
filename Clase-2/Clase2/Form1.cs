@@ -11,6 +11,7 @@ namespace Clase2
             InitializeComponent();
             CargarComboGoles();
             LimpiarControles();
+            CargarComboEquipos(null);
         }
 
         private void CargarComboGoles()
@@ -25,12 +26,29 @@ namespace Clase2
             }
         }
 
+        private void CargarComboEquipos(List<Equipo> equipos)
+        {
+            cboEquipoLocal.Items.Clear();
+            cboEquipoVisitante.Items.Clear();
+
+            if (equipos == null || !equipos.Any())
+            {
+                return;
+            }
+
+            foreach (var equipo in equipos)
+            {
+                cboEquipoLocal.Items.Add(equipo.nombre);
+                cboEquipoVisitante.Items.Add(equipo.nombre);
+            }
+        }
+
         private void cmdRegistrarResultado_Click(object sender, EventArgs e)
         {
             Resultado resultado = new Resultado();
             resultado.fecha = dtpFechaResultado.Value.ToString("dd/MM/yyyy");
-            resultado.equipoLocal = txtEquipoLocal.Text;
-            resultado.equipoVisitante = txtEquipoVisitante.Text;
+            resultado.equipoLocal = cboEquipoLocal.Text;
+            resultado.equipoVisitante = cboEquipoVisitante.Text;
             resultado.golesLocal = cboGolesLocal.SelectedItem.ToString();
             resultado.golesVisitante = cboGolesVisitante.SelectedItem.ToString();
 
@@ -58,8 +76,8 @@ namespace Clase2
 
         private void LimpiarControles()
         {
-            txtEquipoLocal.Text = "";
-            txtEquipoVisitante.Text = "";
+            cboEquipoLocal.SelectedIndex = -1;
+            cboEquipoVisitante.SelectedIndex = -1;
             cboGolesLocal.SelectedIndex = 0;
             cboGolesVisitante.SelectedIndex = 0;
         }
@@ -107,6 +125,38 @@ namespace Clase2
 
         }
 
+        private async Task ObtenerEquiposDeLaAPI()
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:7120/api/");
+                var response = await client.GetAsync("equipos");
+                if (response.IsSuccessStatusCode)
+                {
+                    var jsonResponse = await response.Content.ReadAsStringAsync();
+                    var equipos = JsonSerializer.Deserialize<List<Equipo>>(jsonResponse);
+                    
+                    if (equipos != null && equipos.Any())
+                    {
+                        CargarComboEquipos(equipos);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No hay equipos disponibles. Agregue equipos primero.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Error al obtener los equipos de la API.");
+                }
+            }
+        }
 
+        private async void lblLinkCrearEquipo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FormEquipos formEquipos = new FormEquipos();
+            formEquipos.ShowDialog();
+            await ObtenerEquiposDeLaAPI();
+        }
     }
 }
