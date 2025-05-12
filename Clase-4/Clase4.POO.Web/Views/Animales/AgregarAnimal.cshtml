@@ -1,0 +1,30 @@
+﻿@model AnimalViewModel
+
+@{
+    ViewData["Title"] = "Agregar Animal";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form action="/Animales/AgregarAnimal" method="post">
+    <div class="form-group">
+        <label class="control-label">Tipo:</label>
+        <select asp-for="TipoAnimal" class="form-control">
+            @foreach (var tipo in Model.TiposAnimales)
+            {
+                <option value="@tipo.Value">@tipo.Text</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Nombre" class="control-label"></label>
+        <input asp-for="Nombre" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Edad" class="control-label"></label>
+        <input asp-for="Edad" class="form-control" />
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Agregar</button>
+    </div>
+</form>

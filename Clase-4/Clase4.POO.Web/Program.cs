@@ -6,6 +6,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<IEquiposLogica, EquiposLogica>();
+
+builder.Services.AddSingleton<IAnimalesLogica, AnimalesLogica>();
+builder.Services.AddSingleton<IAnimalCreator, PerroCreator>();
+builder.Services.AddSingleton<IAnimalCreator, GatoCreator>();
+builder.Services.AddSingleton<IAnimalCreator, VacaCreator>();
+builder.Services.AddSingleton<IAnimalCreator, GallinaCreator>();
+builder.Services.AddSingleton<IAnimalCreator, LeonCreator>();
+builder.Services.AddSingleton<AnimalFactory>();
 builder.Services.AddSingleton<IAnimalServicio,AnimalServicio>();
 
 var app = builder.Build();
@@ -27,6 +35,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Equipos}/{action=Listar}/{id?}");
+    pattern: "{controller=Animales}/{action=Listar}/{id?}");
 
 app.Run();

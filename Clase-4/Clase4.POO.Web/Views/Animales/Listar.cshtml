@@ -1,0 +1,16 @@
+﻿@using Clase4.POO.Entidades
+@model List<Animal>
+
+@{
+    ViewData["Title"] = "Listado de Animales";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<a href="/Animales/AgregarAnimal" class="btn btn-primary">Agregar Animal</a>
+<div class="row">
+    @foreach (var animal in Model)
+    {
+        @Html.Partial("_pvAnimal", animal)
+    }
+</div>
