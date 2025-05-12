@@ -1,0 +1,30 @@
+﻿@using Clase4.POO.Entidades.Animal
+@model List<Animal>
+
+@{
+	ViewData["Title"] = "Listado de animales";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tipo</th>
+            <th>Sonido</th>
+            <th>Nombre</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var animal in Model)
+        {
+            <tr>
+                <td>@animal.ObtenerTipo()</td>
+                <td>@animal.HacerSonido()</td>
+                <td>@animal._nombre</td>
+            </tr>
+        }
+    </tbody>
+</table> 
+
+<a href="/Animal/AgregarAnimal" class="btn btn-primary">Agregar Animal</a>

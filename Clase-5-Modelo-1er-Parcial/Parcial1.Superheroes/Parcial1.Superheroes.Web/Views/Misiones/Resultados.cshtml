@@ -1,0 +1,37 @@
+﻿@using Parcial1.Superheroes.Entidades
+@model List<Mision>
+
+@{
+    ViewData["Title"] = "Resultados de Misión";
+}
+
+<h2>Resultados de Misión</h2>
+
+@if(TempData["Mensaje"] != null)
+{
+    <span class="mensajeExito">@TempData["Mensaje"]</span>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#IdMisión</th>
+            <th>Superhéroe</th>
+            <th>Villanos Derrotados</th>
+            <th>Horas de Misión</th>
+            <th>Índice de Eficiencia</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var mision in Model)
+        {
+            <tr>
+                <td>@mision.IdMisión</td>
+                <td>@mision.NombreSuperheroe</td>
+                <td>@mision.CantidadVillanosDerrotados</td>
+                <td>@mision.HorasMision</td>
+                <td>@mision.IndiceEficiencia</td>
+            </tr>
+        }
+    </tbody>
+</table>
