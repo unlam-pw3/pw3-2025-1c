@@ -1,0 +1,29 @@
+﻿@model List<MundialClubes.Entidades.EF.Club>
+
+@{
+    ViewData["Title"] = "Lista de Clubes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Lista de Clubes</h1>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Escudo</th>
+            <th>Camiseta</th>
+            <th>Eliminar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var club in Model)
+        {
+            <tr>
+                <td>@($"{club.Nombre} ({club.Pais})")</td>
+                <td class="text-center"><img src="@club.EscudoUrl" style="height:60px;" alt="@club.Nombre" /></td>
+                <td class="text-center"><img src="@club.CamisetaUrl" style="height:60px;" alt="@club.Nombre" /></td>
+                <td><a href="/Club/Eliminar/@club.IdClub">Eliminar</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
