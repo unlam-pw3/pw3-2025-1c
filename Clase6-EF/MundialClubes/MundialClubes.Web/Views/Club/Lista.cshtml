@@ -20,11 +20,13 @@
         {
             <tr>
                 <td>
-                    @club.Nombre
-                    @if (!string.IsNullOrWhiteSpace(club.Pais))
-                    {
-                        <span> (@club.Pais)</span>
-                    }
+                    <a href="/Club/Editar/@club.IdClub">
+                        @club.Nombre
+                        @if (!string.IsNullOrWhiteSpace(club.Pais))
+                        {
+                            <span> (@club.Pais)</span>
+                        }
+                    </a>
                 </td>
 
                 <td class="text-center">

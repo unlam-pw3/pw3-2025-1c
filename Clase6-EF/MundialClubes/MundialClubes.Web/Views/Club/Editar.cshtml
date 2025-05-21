@@ -1,0 +1,44 @@
+﻿@model MundialClubes.Entidades.EF.Club
+
+@{
+    ViewData["Title"] = "Editar Club";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Editar Club</h1>
+<form asp-action="Editar" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="IdClub" />
+    <div class="mb-3">
+        <label asp-for="Nombre" class="form-label"></label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Pais" class="form-label"></label>
+        <input asp-for="Pais" class="form-control" />
+        <span asp-validation-for="Pais" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="EscudoUrl" class="form-label"></label>
+        <input asp-for="EscudoUrl" class="form-control" />
+        <span asp-validation-for="EscudoUrl" class="text-danger"></span>
+        @if (!string.IsNullOrWhiteSpace(Model.EscudoUrl))
+        {
+            <img src="@Model.EscudoUrl" style="height:60px;" alt="@Model.Nombre" />
+        }
+    </div>
+    <div class="mb-3">
+        <label asp-for="CamisetaUrl" class="form-label"></label>
+        <input asp-for="CamisetaUrl" class="form-control" />
+        <span asp-validation-for="CamisetaUrl" class="text-danger"></span>
+        @if (!string.IsNullOrWhiteSpace(Model.CamisetaUrl))
+        {
+            <img src="@Model.CamisetaUrl" style="height:60px;" alt="@Model.Nombre" />
+        }
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        <a asp-action="Lista" class="btn btn-secondary">Cancelar</a>
+    </div>
+
+</form>
