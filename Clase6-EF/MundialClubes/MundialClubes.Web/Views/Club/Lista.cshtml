@@ -19,9 +19,28 @@
         @foreach (var club in Model)
         {
             <tr>
-                <td>@($"{club.Nombre} ({club.Pais})")</td>
-                <td class="text-center"><img src="@club.EscudoUrl" style="height:60px;" alt="@club.Nombre" /></td>
-                <td class="text-center"><img src="@club.CamisetaUrl" style="height:60px;" alt="@club.Nombre" /></td>
+                <td>
+                    @club.Nombre
+                    @if (!string.IsNullOrWhiteSpace(club.Pais))
+                    {
+                        <span> (@club.Pais)</span>
+                    }
+                </td>
+
+                <td class="text-center">
+                    @if (!string.IsNullOrWhiteSpace(club.EscudoUrl))
+                    {
+                        <img src="@club.EscudoUrl" style="height:60px;" alt="@club.Nombre" />
+                    }
+                </td>
+
+                <td class="text-center">
+                    @if (!string.IsNullOrWhiteSpace(club.CamisetaUrl))
+                    {
+                        <img src="@club.CamisetaUrl" style="height:60px;" alt="@club.Nombre" />
+                    }
+                </td>
+
                 <td><a href="/Club/Eliminar/@club.IdClub">Eliminar</a></td>
             </tr>
         }

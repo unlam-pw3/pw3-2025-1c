@@ -1,0 +1,37 @@
+﻿@model MundialClubes.Entidades.EF.Club
+
+@{
+    ViewData["Title"] = "Agregar Club";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Agregar Club</h1>
+<form asp-action="Agregar" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label asp-for="Nombre" class="form-label"></label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Pais" class="form-label"></label>
+        <input asp-for="Pais" class="form-control" />
+        <span asp-validation-for="Pais" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="EscudoUrl" class="form-label"></label>
+        <input asp-for="EscudoUrl" class="form-control" />
+        <span asp-validation-for="EscudoUrl" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="CamisetaUrl" class="form-label"></label>
+        <input asp-for="CamisetaUrl" class="form-control" />
+        <span asp-validation-for="CamisetaUrl" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Agregar Club</button>
+    </div>
+</form>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+    
