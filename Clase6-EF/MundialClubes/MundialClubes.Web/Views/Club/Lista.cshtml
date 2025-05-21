@@ -1,0 +1,50 @@
+﻿@model List<MundialClubes.Entidades.EF.Club>
+
+@{
+    ViewData["Title"] = "Lista de Clubes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Lista de Clubes</h1>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Escudo</th>
+            <th>Camiseta</th>
+            <th>Eliminar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var club in Model)
+        {
+            <tr>
+                <td>
+                    <a href="/Club/Editar/@club.IdClub">
+                        @club.Nombre
+                        @if (!string.IsNullOrWhiteSpace(club.Pais))
+                        {
+                            <span> (@club.Pais)</span>
+                        }
+                    </a>
+                </td>
+
+                <td class="text-center">
+                    @if (!string.IsNullOrWhiteSpace(club.EscudoUrl))
+                    {
+                        <img src="@club.EscudoUrl" style="height:60px;" alt="@club.Nombre" />
+                    }
+                </td>
+
+                <td class="text-center">
+                    @if (!string.IsNullOrWhiteSpace(club.CamisetaUrl))
+                    {
+                        <img src="@club.CamisetaUrl" style="height:60px;" alt="@club.Nombre" />
+                    }
+                </td>
+
+                <td><a href="/Club/Eliminar/@club.IdClub">Eliminar</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
