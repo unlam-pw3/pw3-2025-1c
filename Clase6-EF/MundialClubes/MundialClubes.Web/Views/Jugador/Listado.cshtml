@@ -1,0 +1,49 @@
+﻿@model List<MundialClubes.Entidades.EF.JugadorEstrella>
+
+@{
+    ViewData["Title"] = "Lista de Jugadores";
+}
+
+<h1>Lista de Jugadores</h1>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Edad</th>
+            <th>Imagen</th>
+            <th>Descripción</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var jugadorEstrella in Model)
+        {
+            <tr>
+                <td>
+                    <a href="/Jugador/Editar/@jugadorEstrella.IdJugadorEstrella">
+                        @jugadorEstrella.Nombre
+                    </a>
+                </td>
+
+                <td>            
+                        @jugadorEstrella.Edad
+                </td>
+
+                <td class="text-center">
+                    @if (!string.IsNullOrWhiteSpace(jugadorEstrella.FotoUrl))
+                    {
+                        <img src="@jugadorEstrella.FotoUrl" style="height:60px;" alt="@jugadorEstrella.Nombre" />
+                    }
+                </td>
+
+                <td class="text-center">
+                    @if (!string.IsNullOrWhiteSpace(jugadorEstrella.Descripcion))
+                    {
+                        @jugadorEstrella.Descripcion
+                    }
+                </td>
+
+                <td><a href="/Jugador/Eliminar/@jugadorEstrella.IdJugadorEstrella">Eliminar</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
