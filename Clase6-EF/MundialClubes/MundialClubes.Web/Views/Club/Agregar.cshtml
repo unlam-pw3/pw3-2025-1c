@@ -28,6 +28,17 @@
         <span asp-validation-for="CamisetaUrl" class="text-danger"></span>
     </div>
     <div class="mb-3">
+        <label>Presidente: </label>
+        @* dropdown presidente *@
+        <select name="IdPresidente" class="form-select" asp-items="ViewBag.Presidentes">
+            <option value="">-- Sin presidente --</option>
+        </select>
+        @* input para nuevo presidente *@
+        <input type="text" name="NuevoPresidente" class="form-control" placeholder="Nuevo Presidente (opcional)" />
+    </div>
+
+
+    <div class="mb-3">
         <button type="submit" class="btn btn-primary">Agregar Club</button>
     </div>
 </form>

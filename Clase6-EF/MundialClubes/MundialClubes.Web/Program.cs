@@ -9,6 +9,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<MundialClubesContext>();
 builder.Services.AddScoped<IClubLogica, ClubLogica>();
 builder.Services.AddScoped<IJugadorLogica, JugadorLogica>();
+builder.Services.AddScoped<IPresidenteLogica, PresidenteLogica>();
 
 
 var app = builder.Build();

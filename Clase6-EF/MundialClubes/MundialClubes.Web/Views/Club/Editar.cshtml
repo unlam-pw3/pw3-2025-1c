@@ -36,6 +36,16 @@
             <img src="@Model.CamisetaUrl" style="height:60px;" alt="@Model.Nombre" />
         }
     </div>
+    @* Combo de presidentes *@
+    <div class="mb-3">
+        <label>Presidente: </label>
+        <select name="IdPresidente" class="form-select" asp-items="ViewBag.Presidentes">
+            <option value="">-- Sin presidente --</option>
+        </select>
+        @* Input para nuevo presidente *@
+        <input type="text" name="NuevoPresidente" class="form-control" placeholder="Nuevo Presidente (opcional)" />
+    </div>
+
     <div class="mb-3">
         <button type="submit" class="btn btn-primary">Guardar Cambios</button>
         <a asp-action="Lista" class="btn btn-secondary">Cancelar</a>
