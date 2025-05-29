@@ -24,7 +24,7 @@ namespace MundialClubes.Logica
         }
         public void Actualizar(JugadorEstrella jugador)
         {
-            var jugadorActualizar = _context.JugadorEstrella.Find(jugador.IdJugadorEstrella);
+            var jugadorActualizar = _context.JugadorEstrellas.Find(jugador.IdJugadorEstrella);
 
             if (jugadorActualizar != null)
             {
@@ -40,17 +40,17 @@ namespace MundialClubes.Logica
 
         public void AgregarJugador(JugadorEstrella jugador)
         {
-            _context.JugadorEstrella.Add(jugador);
+            _context.JugadorEstrellas.Add(jugador);
             _context.SaveChanges();
         }
 
         public void EliminarJugador(int idJugador)
         {
-            var jugador = _context.JugadorEstrella.Find(idJugador);
+            var jugador = _context.JugadorEstrellas.Find(idJugador);
 
             if(jugador != null)
             {
-                _context.JugadorEstrella.Remove(jugador);
+                _context.JugadorEstrellas.Remove(jugador);
                 _context.SaveChanges();
             }
 
@@ -59,12 +59,12 @@ namespace MundialClubes.Logica
 
         public JugadorEstrella ObtenerJugadorPorId(int idJugador)
         {
-            return _context.JugadorEstrella.Find(idJugador);
+            return _context.JugadorEstrellas.Find(idJugador);
         }
 
         public List<JugadorEstrella> ObtenerTodosLosJugadores()
         {
-            return _context.JugadorEstrella.ToList();
+            return _context.JugadorEstrellas.ToList();
         }
     }
 }

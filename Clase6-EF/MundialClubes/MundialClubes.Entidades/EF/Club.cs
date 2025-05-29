@@ -14,4 +14,6 @@ public partial class Club
     public string? EscudoUrl { get; set; }
 
     public string? CamisetaUrl { get; set; }
+
+    public virtual Presidente? Presidente { get; set; }
 }

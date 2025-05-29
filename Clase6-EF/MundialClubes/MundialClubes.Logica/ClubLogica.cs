@@ -1,4 +1,5 @@
-﻿using MundialClubes.Entidades.EF;
+﻿using Microsoft.EntityFrameworkCore;
+using MundialClubes.Entidades.EF;
 
 namespace MundialClubes.Logica;
 
@@ -31,7 +32,8 @@ public class ClubLogica : IClubLogica
     }
     public Club ObtenerClubPorId(int id)
     {
-        return _context.Clubs.Find(id);
+        return _context.Clubs.Include(c => c.Presidente)
+                             .First(c => c.IdClub == id);
     }
 
     public void Actualizar(Club club)
@@ -43,6 +45,19 @@ public class ClubLogica : IClubLogica
             clubExistente.Pais = club.Pais;
             clubExistente.EscudoUrl = club.EscudoUrl;
             clubExistente.CamisetaUrl = club.CamisetaUrl;
+
+            // Si el club tiene un presidente, actualizamos la referencia
+            if (club.Presidente != null)
+            {
+                var presidenteExistente = _context.Presidentes.Find(club.Presidente.IdPresidente);
+                if (presidenteExistente == null)               
+                {
+                    // Si el presidente no existe, lo agregamos
+                    _context.Presidentes.Add(club.Presidente);
+                }
+
+                clubExistente.Presidente = club.Presidente;
+            }
             _context.SaveChanges();
         }
     }
