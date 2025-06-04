@@ -1,0 +1,31 @@
+﻿@using Clase4.POO.Entidades
+@model List<IAnimales>
+
+
+    @{
+    ViewData["Title"] = "Listar Animales";
+}
+
+<h1>Listar Animales</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var animal in Model)
+        {
+            <tr>
+                <td>@animal.Nombre</td>
+                <td>@animal.HacerRuido()</td>
+            </tr>
+        }
+    </tbody>
+    </table>
+<p>
+    <a asp-action="Agregar" class="btn btn-primary">Crear Nuevo Animal</a>
+</p>

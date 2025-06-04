@@ -1,0 +1,30 @@
+﻿@model MundialDeClubes.Entidades.EF.Club
+@{
+    ViewData["Title"] = "Editar Club";
+}
+<h1>@ViewData["Title"]</h1>
+<form asp-action="Editar" method="post">
+    <input type="hidden" asp-for="IdClub" />
+    <div class="form-group">
+        <label asp-for="Nombre"></label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Pais"></label>
+        <input asp-for="Pais" class="form-control" />
+        <span asp-validation-for="Pais" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EscudoUrl"></label>
+        <input asp-for="EscudoUrl" class="form-control" />
+        <span asp-validation-for="EscudoUrl" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CamisetaUrl"></label>
+        <input asp-for="CamisetaUrl" class="form-control" />
+        <span asp-validation-for="CamisetaUrl" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Editar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

@@ -1,0 +1,31 @@
+﻿@model List<MundialDeClubes.Entidades.EF.Presidente>
+@{
+    ViewData["Title"] = "Listar Presidentes";
+}
+<h1>@ViewData["Title"]</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Equipo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var presidente in Model)
+        {
+            <tr>
+                <td>@presidente.IdPresidente</td>
+                <td>@presidente.Nombre</td>
+                <td>@(presidente.IdClubNavigation != null ? presidente.IdClubNavigation.Nombre : "Sin club")</td>
+
+                <td>
+                    <a asp-action="Editar" asp-route-id="@presidente.IdPresidente" class="btn btn-warning">Editar</a>
+                    <a asp-action="Eliminar" asp-route-id="@presidente.IdPresidente" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="Agregar" class="btn btn-primary">Agregar Presidente</a>
+

@@ -1,0 +1,49 @@
+﻿@model List<MundialDeClubes.Entidades.EF.Club>
+@{
+    ViewData["Title"] = "Listar Clubes";
+}
+<h1>@ViewData["Title"]</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>País</th>
+            <th>Escudo</th>
+            <th>Camiseta</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var club in Model)
+        {
+            <tr>
+                <td>@club.IdClub</td>
+                <td>@club.Nombre</td>
+                <td>@club.Pais</td>
+                <td><img src="@club.EscudoUrl" alt="Escudo de @club.Nombre" style="width: 50px; height: auto;" /></td>
+                <td><img src="@club.CamisetaUrl" alt="Camiseta de @club.Nombre" style="width: 50px; height: auto;" /></td>
+                <td>
+                    <a asp-action="Editar" asp-route-id="@club.IdClub" class="btn btn-warning">Editar</a>
+                    <a asp-action="Eliminar" asp-route-id="@club.IdClub" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="Agregar" class="btn btn-primary">Agregar Nuevo Club</a>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('.btn-danger').click(function (e) {
+                e.preventDefault();
+                if (confirm('¿Estás seguro de que quieres eliminar este club?')) {
+                    var url = $(this).attr('href');
+                    $.post(url, function () {
+                        location.reload();
+                    });
+                }
+            });
+        });
+    </script>
+}
