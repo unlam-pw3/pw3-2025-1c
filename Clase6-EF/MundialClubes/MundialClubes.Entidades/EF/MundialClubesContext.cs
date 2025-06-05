@@ -21,6 +21,8 @@ public partial class MundialClubesContext : DbContext
 
     public virtual DbSet<Presidente> Presidentes { get; set; }
 
+    public virtual DbSet<Torneo> Torneos { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Server=.;Database=MundialClubes;Trusted_Connection=True;TrustServerCertificate=True;");
@@ -63,6 +65,34 @@ public partial class MundialClubesContext : DbContext
                 .HasForeignKey<Presidente>(d => d.IdClub)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Presidente_Club");
+        });
+
+        modelBuilder.Entity<Torneo>(entity =>
+        {
+            entity.HasKey(e => e.IdTorneo);
+
+            entity.ToTable("Torneo");
+
+            entity.Property(e => e.FechaFin).HasColumnType("datetime");
+            entity.Property(e => e.FechaInicio).HasColumnType("datetime");
+            entity.Property(e => e.Nombre).HasMaxLength(100);
+
+            entity.HasMany(d => d.IdClubs).WithMany(p => p.IdTorneos)
+                .UsingEntity<Dictionary<string, object>>(
+                    "TorneoClub",
+                    r => r.HasOne<Club>().WithMany()
+                        .HasForeignKey("IdClub")
+                        .OnDelete(DeleteBehavior.ClientSetNull)
+                        .HasConstraintName("FK_TorneoClub_Club"),
+                    l => l.HasOne<Torneo>().WithMany()
+                        .HasForeignKey("IdTorneo")
+                        .OnDelete(DeleteBehavior.ClientSetNull)
+                        .HasConstraintName("FK_TorneoClub_Torneo"),
+                    j =>
+                    {
+                        j.HasKey("IdTorneo", "IdClub");
+                        j.ToTable("TorneoClub");
+                    });
         });
 
         OnModelCreatingPartial(modelBuilder);

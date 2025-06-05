@@ -125,3 +125,184 @@ Implementar el CRUD para la entidad `JugadorEstrella` con una **relación 1 a 1 
 - Hacer un fork de este repositorio
 - Trabajar en una rama nueva
 - Enviar un Pull Request contra el repositorio original una vez finalizado
+
+
+# Clase 8 - API Torneos - ASP.NET Core
+
+Este proyecto expone una API REST para gestionar torneos y clubes. Usa ASP.NET Core con soporte para DTOs y AutoMapper para separar entidades de base de datos de los datos expuestos en la API.
+
+---
+
+## 🧱 Estructura del Proyecto
+
+```
+/Controllers
+  └── TorneoController.cs
+/Models
+  └── Entidades EF Core (Torneo, Club, Presidente)
+/Models/Dto
+  └── TorneoDto.cs
+  └── ClubDto.cs
+  └── PresidenteDto.cs
+/Mapping
+  └── MappingProfile.cs
+Program.cs
+```
+
+---
+
+## ✅ Funcionalidades del Controller
+
+- `GET /api/torneo`: Obtiene todos los torneos (con clubes asociados).
+- `GET /api/torneo/{id}`: Obtiene un torneo por ID.
+- `POST /api/torneo`: Crea un nuevo torneo.
+- `POST /api/torneo/{idTorneo}/club/{idClub}`: Asocia un club a un torneo.
+- `DELETE /api/torneo/{idTorneo}`: Elimina un torneo.
+
+---
+
+## 📦 DTOs
+
+Se usan Data Transfer Objects (DTOs) para separar las entidades del dominio de los datos que se exponen o reciben en la API.
+
+### Ejemplo: `TorneoDto.cs`
+
+```csharp
+public class TorneoDto
+{
+    public int IdTorneo { get; set; }
+    public string Nombre { get; set; } = null!;
+    public DateTime FechaInicio { get; set; }
+    public DateTime FechaFin { get; set; }
+    public int? PremiosTotales { get; set; }
+    public int? CantidadEquipos { get; set; }
+    public List<ClubDto> IdClubs { get; set; } = new();
+}
+```
+
+---
+
+## 🔄 AutoMapper
+
+### Configuración en `Program.cs`
+
+```csharp
+builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
+```
+
+### Perfil de mapeo: `MappingProfile.cs`
+
+```csharp
+public class MappingProfile : Profile
+{
+    public MappingProfile()
+    {
+        CreateMap<Torneo, TorneoDto>().ReverseMap();
+        CreateMap<Club, ClubDto>().ReverseMap();
+        CreateMap<Presidente, PresidenteDto>().ReverseMap();
+    }
+}
+```
+
+---
+
+## 🛑 Errores comunes evitados
+
+- ❌ Ciclos de serialización (`A possible object cycle was detected`)  
+  ✅ Solucionado con DTOs planos y sin referencias circulares.
+  
+- ❌ `idClubs` viene vacío  
+  ✅ Solucionado incluyendo `.Include(t => t.IdClubs)` en la lógica y usando `AutoMapper` para mapear correctamente la lista.
+
+---
+
+## ✨ Buenas prácticas aplicadas
+
+- Uso de DTOs para desacoplar capa de datos de la API.
+- Mapeo automático con AutoMapper.
+- Separación clara entre lógica, modelos, y controladores.
+- Estructura escalable y mantenible.
+
+---
+
+
+# 🏁 Tarea: Relación N a N entre Árbitros y Torneos
+
+## 🎯 Objetivo
+Modelar y exponer una relación **muchos a muchos** entre las entidades `Torneo` y `Arbitro` utilizando:
+
+- Entidades EF Core
+- DTOs para evitar ciclos de serialización
+- AutoMapper para mapeo entre entidades y DTOs
+- Controladores RESTful en ASP.NET Core Web API
+
+---
+
+## 🧱 Requisitos
+
+### 1. Crear la entidad `Arbitro`
+
+```csharp
+public class Arbitro
+{
+    public int IdArbitro { get; set; }
+    public string Nombre { get; set; } = null!;
+    public string Nacionalidad { get; set; } = null!;
+    
+    public ICollection<Torneo> Torneos { get; set; } = new List<Torneo>();
+}
+```
+
+### 2. Agregar propiedad en `Torneo`
+
+```csharp
+public class Torneo
+{
+    public int IdTorneo { get; set; }
+    public string Nombre { get; set; } = null!;
+    public DateTime FechaInicio { get; set; }
+    public DateTime FechaFin { get; set; }
+
+    public ICollection<Arbitro> Arbitros { get; set; } = new List<Arbitro>();
+}
+```
+
+### 3. Crear los DTOs
+
+- `TorneoDto`: con lista de `ArbitroDto`
+- `ArbitroDto`: opcionalmente con lista de `TorneoDto` (si no causa ciclos)
+
+### 4. Configurar `MappingProfile`
+
+```csharp
+public class MappingProfile : Profile
+{
+    public MappingProfile()
+    {
+        CreateMap<Torneo, TorneoDto>().ReverseMap();
+        CreateMap<Arbitro, ArbitroDto>().ReverseMap();
+    }
+}
+```
+
+### 5. Métodos en `TorneoController`
+
+- `POST /api/torneo`: crear torneo (sin árbitros)
+- `POST /api/torneo/{idTorneo}/arbitro/{idArbitro}`: asignar árbitro a torneo
+
+### 6. Crear `ArbitroController`
+
+- `GET /api/arbitro`: listar todos los árbitros
+- `POST /api/arbitro`: crear nuevo árbitro
+
+
+---
+
+## 🧠 Sugerencias
+
+- Crear Fork y luego al finalizar enviar un PR
+- Usá `Include()` en tu lógica para que vengan las relaciones cargadas.
+- Probalo con Swagger para ver los resultados del mapeo.
+- Evitá ciclos infinitos de serialización usando DTOs.
+
+
