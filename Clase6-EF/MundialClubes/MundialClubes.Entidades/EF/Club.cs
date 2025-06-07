@@ -16,4 +16,6 @@ public partial class Club
     public string? CamisetaUrl { get; set; }
 
     public virtual Presidente? Presidente { get; set; }
+
+    public virtual ICollection<Torneo> IdTorneos { get; set; } = new List<Torneo>();
 }
