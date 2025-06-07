@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using MundialClubes.Entidades.EF;
 using MundialClubes.Logica;
@@ -52,5 +53,18 @@ public class ArbitroController : ControllerBase
         }
         var arbitroDto = _mapper.Map<ArbitroDto>(arbitro);
         return Ok(arbitroDto);
+    }
+
+    [HttpPost("{idTorneo}/arbitro/{idArbitro}")]
+    public IActionResult AgregarArbitroATorneo(int idTorneo, int idArbitro) {
+    
+        var arbitro = _arbitroLogica.ObtenerArbitroPorId(idArbitro);
+        if (arbitro == null)
+        {
+            return NotFound($"Árbitro con ID {idArbitro} no encontrado.");
+        }
+        _arbitroLogica.AgregarArbitroATorneo(idTorneo, arbitro);
+        return Ok();
+
     }
 }

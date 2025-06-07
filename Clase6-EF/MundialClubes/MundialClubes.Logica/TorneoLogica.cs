@@ -24,7 +24,9 @@ public class TorneoLogica : ITorneoLogica
 
     public List<Torneo> ObtenerTodosLosTorneos()
     {
-        return _context.Torneos.ToList();
+        return _context.Torneos
+              .Include(t => t.IdClubs).Include(a => a.IdArbitros)
+              .ToList();
     }
 
     public void CrearTorneo(Torneo torneo)
@@ -36,7 +38,7 @@ public class TorneoLogica : ITorneoLogica
     public Torneo? ObtenerTorneoPorId(int id)
     {
         return _context.Torneos
-                .Include(t => t.IdClubs)
+                .Include(t => t.IdClubs).Include(a => a.IdArbitros)
                 .FirstOrDefault(t => t.IdTorneo == id);
     }
 
