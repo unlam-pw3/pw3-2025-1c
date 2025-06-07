@@ -14,4 +14,6 @@ public partial class JugadorEstrella
     public string? FotoUrl { get; set; }
 
     public string? Descripcion { get; set; }
+
+    public int IdClub { get; set; }
 }

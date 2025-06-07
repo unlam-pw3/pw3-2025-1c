@@ -12,6 +12,7 @@ builder.Services.AddScoped<IClubLogica, ClubLogica>();
 builder.Services.AddScoped<IJugadorLogica, JugadorLogica>();
 builder.Services.AddScoped<IPresidenteLogica, PresidenteLogica>();
 builder.Services.AddScoped<ITorneoLogica, TorneoLogica>();
+builder.Services.AddScoped<IArbitroLogica, ArbitroLogica>();
 
 // Registrar AutoMapper y pasar el assembly donde están los perfiles
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);

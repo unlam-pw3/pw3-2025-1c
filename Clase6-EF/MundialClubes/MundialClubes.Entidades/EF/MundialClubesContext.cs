@@ -15,6 +15,8 @@ public partial class MundialClubesContext : DbContext
     {
     }
 
+    public virtual DbSet<Arbitro> Arbitros { get; set; }
+
     public virtual DbSet<Club> Clubs { get; set; }
 
     public virtual DbSet<JugadorEstrella> JugadorEstrellas { get; set; }
@@ -25,10 +27,24 @@ public partial class MundialClubesContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=.;Database=MundialClubes;Trusted_Connection=True;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Server=DESKTOP-BDT1HJL\\SQLEXPRESS;Database=MundialClubes;Trusted_Connection=True;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Arbitro>(entity =>
+        {
+            entity.HasKey(e => e.IdArbitro);
+
+            entity.ToTable("Arbitro");
+
+            entity.Property(e => e.Nacionalidad)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+        });
+
         modelBuilder.Entity<Club>(entity =>
         {
             entity.HasKey(e => e.IdClub);
@@ -46,6 +62,8 @@ public partial class MundialClubesContext : DbContext
             entity.HasKey(e => e.IdJugadorEstrella).HasName("PK__JugadorE__1DBDEACFE498A70A");
 
             entity.ToTable("JugadorEstrella");
+
+            entity.HasIndex(e => e.IdClub, "IX_JugadorEstrella").IsUnique();
 
             entity.Property(e => e.FotoUrl).HasMaxLength(500);
             entity.Property(e => e.Nombre).HasMaxLength(250);
@@ -75,7 +93,26 @@ public partial class MundialClubesContext : DbContext
 
             entity.Property(e => e.FechaFin).HasColumnType("datetime");
             entity.Property(e => e.FechaInicio).HasColumnType("datetime");
-            entity.Property(e => e.Nombre).HasMaxLength(100);
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+
+            entity.HasMany(d => d.IdArbitros).WithMany(p => p.IdTorneos)
+                .UsingEntity<Dictionary<string, object>>(
+                    "TorneoArbitro",
+                    r => r.HasOne<Arbitro>().WithMany()
+                        .HasForeignKey("IdArbitro")
+                        .OnDelete(DeleteBehavior.ClientSetNull)
+                        .HasConstraintName("FK_TorneoArbitro_Arbitro"),
+                    l => l.HasOne<Torneo>().WithMany()
+                        .HasForeignKey("IdTorneo")
+                        .OnDelete(DeleteBehavior.ClientSetNull)
+                        .HasConstraintName("FK_TorneoArbitro_Torneo"),
+                    j =>
+                    {
+                        j.HasKey("IdTorneo", "IdArbitro");
+                        j.ToTable("TorneoArbitro");
+                    });
 
             entity.HasMany(d => d.IdClubs).WithMany(p => p.IdTorneos)
                 .UsingEntity<Dictionary<string, object>>(
