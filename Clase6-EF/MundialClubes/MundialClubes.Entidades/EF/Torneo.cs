@@ -17,5 +17,7 @@ public partial class Torneo
 
     public int? CantidadEquipos { get; set; }
 
+    public virtual ICollection<Arbitro> IdArbitros { get; set; } = new List<Arbitro>();
+
     public virtual ICollection<Club> IdClubs { get; set; } = new List<Club>();
 }

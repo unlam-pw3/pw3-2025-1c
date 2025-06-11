@@ -10,5 +10,6 @@ public class MappingProfile : Profile
     {
         CreateMap<Torneo, TorneoDto>().ReverseMap();
         CreateMap<Club, ClubDto>().ReverseMap();
+        CreateMap<Arbitro, ArbitroDto>().ReverseMap();
     }
 }

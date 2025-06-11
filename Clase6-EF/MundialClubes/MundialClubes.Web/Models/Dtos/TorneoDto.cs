@@ -9,4 +9,6 @@ public class TorneoDto
     public int? PremiosTotales { get; set; }
     public int? CantidadEquipos { get; set; }
     public List<ClubDto> IdClubs { get; set; } = new();
+    public List<ArbitroDto> IdArbitros { get; set; } = new();
+
 }
