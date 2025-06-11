@@ -1,0 +1,52 @@
+﻿@using GestionReservas.Data.EF
+@model List<Reserva>
+@{
+    ViewData["Title"] = "Visualizar Reservas";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form action="/Reservas/Visualizar" method="post">
+    <div>
+        <span>Destinos:</span>
+        <select name="idDestino" class="form-select" aria-label="Default select example">
+            <option value="">Todos</option>
+            @foreach (var destino in ViewData["Destinos"] as List<Destino>)
+            {
+                //select the destination if it matches the filter
+                if (ViewBag.IdDestino != null && ViewBag.IdDestino.ToString() == destino.IdDestino.ToString())
+                {
+                    <option value="@destino.IdDestino" selected>@destino.Nombre</option>
+                }
+                else
+                {
+                    <option value="@destino.IdDestino">@destino.Nombre</option>
+                }
+            }
+        </select>
+        <input type="submit" value="Filtrar" class="btn btn-primary mt-2" />
+    </div>
+</form>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Cantidad Pasajeros</th>
+            <th>Destino</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Fin</th>
+            <th>Eliminar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reserva in Model)
+        {
+            <tr>
+                <td>@reserva.CantidadPasajeros</td>
+                <td>@reserva.IdDestinoNavigation.Nombre</td>
+                <td>@reserva.FechaInicio.ToString("dd/MM/yyyy")</td>
+                <td>@reserva.FechaFin.ToString("dd/MM/yyyy")</td>
+                <td><a href="/Reservas/Eliminar/@reserva.IdReserva">Eliminar</a>
+            </tr>
+        }
+    </tbody>
+</table>

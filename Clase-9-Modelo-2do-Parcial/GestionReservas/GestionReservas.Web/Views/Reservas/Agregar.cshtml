@@ -1,0 +1,35 @@
+﻿@using GestionReservas.Data.EF
+@model ReservaModel
+
+@{
+    ViewData["Title"] = "Agregar Reserva";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Agregar" method="post">
+    <div class="mb-3">
+        <label for="idDestino" class="form-label">Destino</label>
+        <select name="idDestino" class="form-select" id="idDestino" required>
+            <option value="">Seleccione un destino</option>
+            @foreach (var destino in ViewBag.Destinos as List<Destino>)
+            {
+                <option value="@destino.IdDestino">@destino.Nombre</option>
+            }
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="cantidadPasajeros" class="form-label">Cantidad de Pasajeros</label>
+        <input type="number" name="cantidadPasajeros" class="form-control" id="cantidadPasajeros" required>
+    </div>
+    
+    <div class="mb-3">
+        <label for="fechaInicio" class="form-label">Fecha de Inicio</label>
+        <input type="date" name="fechaInicio" class="form-control" id="fechaInicio" required value="@Model.FechaInicio.ToString("yyyy-MM-dd")">
+    </div>
+    <div class="mb-3">
+        <label for="fechaFin" class="form-label">Fecha de Fin</label>
+        <input type="date" name="fechaFin" class="form-control" id="fechaFin" required value="@Model.FechaFin.ToString("yyyy-MM-dd")">
+    </div>
+    <button type="submit" class="btn btn-primary">Agregar Reserva</button>
+</form>
